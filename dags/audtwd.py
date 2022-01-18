@@ -14,10 +14,10 @@ from airflow.operators.dummy_operator import DummyOperator
 target_rate = 20
 # set the local time zone
 tz = "Australia/Melbourne"
-# currency rate page
-curr_page = "https://www.investing.com/currencies/aud-twd"
-# notification email
-no_email = "your_email@gmail.com"
+# send notification to this email
+to_email = "your_email"
+# email messages
+email_messages = """ <a href="https://www.esunbank.com.tw/bank/personal/deposit/rate/forex/exchange-rate-chart?Currency=AUD/TWD">E.SUN BANK</a> """
 
 
 local_tz = pendulum.timezone(tz)
@@ -30,6 +30,8 @@ default_args = {
 
 # crawl the website to get the currency rate
 def check_rate_info(**context):
+    # currency rate page
+    curr_page = "https://www.investing.com/currencies/aud-twd"
     url = curr_page
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -41,8 +43,8 @@ def check_rate_info(**context):
 # insert the current rate into database
 def insert_data(**context):
     DSN = """host=localhost
-             dbname=postgres
-             user=cylin 
+             dbname=airflow_db
+             user=newuser 
              password=pwd 
              port=5432"""
     with psycopg2.connect(DSN) as conn:
@@ -97,9 +99,9 @@ with DAG('currency_rate_check',
 
     send_notification = EmailOperator(
         task_id='send_notification',
-        to=no_email,
+        to=to_email,
         subject='rate over ' + str(target_rate),
-        html_content=""" <a href="https://www.esunbank.com.tw/bank/personal/deposit/rate/forex/exchange-rate-chart?Currency=AUD/TWD">E.SUN BANK</a> """,
+        html_content=email_messages,
         dag=dag
     )
 
