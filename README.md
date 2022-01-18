@@ -4,11 +4,6 @@ A simple airflow app that remind me the currency rate (TWD/AUD) with email
 
 ## Deployment
 ### Deploy with conda
-> Create Environment
-```bash
-conda create -n airflow python=3.9
-conda activate airflow
-```
 > Install PostgreSQL and create database and new user
 ```bash
 brew install postgresql
@@ -37,6 +32,22 @@ CREATE TABLE audtotwd(
 	);
 ```
 ![](https://github.com/ChienYao-Lin/currency_rate_check_airflow/blob/main/images/pgAdmin_query_tool.png)
+
+> Create Environment
+```bash
+conda create -n airflow python=3.9
+conda activate airflow
+```
+
+> Install postgresSQL package for python
+```bash
+pip install psycopg2
+```
+
+> Install crawler package 
+```bash
+pip install bs4
+```
 
 > Follow Apache Airflow [Quick Start](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html)) to install Airflow
 ```bash
