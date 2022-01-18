@@ -89,6 +89,7 @@ smtp_retry_limit = 5
 (https://support.google.com/mail/answer/7126229)
 
 > DAG configuration
+
 There are also some variables you can set in ~/dags/audtwd.py
 ```bash
 # set the currency rate
