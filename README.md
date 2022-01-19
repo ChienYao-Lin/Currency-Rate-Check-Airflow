@@ -9,11 +9,11 @@ This is a simple airflow app that remind me the currency rate (TWD/AUD) with ema
 brew install postgresql
 brew services start postgresql
 psql postgres
-CREATE ROLE newuser WITH LOGIN PASSWORD 'pwd';
+CREATE ROLE new_user WITH LOGIN PASSWORD 'pwd';
 CREATE DATABASE airflow_db;
 \q
 psql -d airflow_db
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO newuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO new_user;
 \q
 ```
 > Install pgAdmin to manipulate our database
