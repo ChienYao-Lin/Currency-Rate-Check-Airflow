@@ -11,6 +11,10 @@ brew services start postgresql
 psql postgres
 CREATE ROLE newuser WITH LOGIN PASSWORD 'pwd';
 CREATE DATABASE airflow_db;
+\q
+psql -d airflow_db
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO newuser;
+\q
 ```
 > Install pgAdmin to manipulate our database
 ```bash
