@@ -44,7 +44,7 @@ def check_rate_info(**context):
 def insert_data(**context):
     DSN = """host=localhost
              dbname=airflow_db
-             user=newuser 
+             user=new_user 
              password=pwd 
              port=5432"""
     with psycopg2.connect(DSN) as conn:
