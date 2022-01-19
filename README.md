@@ -1,5 +1,5 @@
 # Currency Rate Check with Airflow
-A simple airflow app that remind me the currency rate (TWD/AUD) with email
+This is a simple airflow app that remind me the currency rate (TWD/AUD) with email. The rate will be recorded in local postgresSQL database.
 
 
 ## Deployment
